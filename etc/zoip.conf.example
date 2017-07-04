@@ -1,0 +1,10 @@
+[zoip]
+tts_cache=/tmp
+tts_engine=festival
+festival=/usr/bin/text2wave
+cepstral=/opt/swift/bin/swift
+
+[sphinx]
+daemonize=0
+prefork_children=2
+max_clients_per_child=50
