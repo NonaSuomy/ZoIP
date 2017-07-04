@@ -456,7 +456,13 @@ Couldn't open /tmp/recording---in.wav at /home/simon/zasterisk/lib/Asterisk/Game
 
 The first issue we will make for ourselves is were going to be using Scientific Linux 6.7 just to make this difficult.
 
-To get a quick VoIP Server going were going to use PIAF.
+```
+Connected to Asterisk 13.7.2 currently running on IncrediblePBX
+```
+
+To get a quick VoIP Server going were going to use [IncrediblePBX13.2](https://sourceforge.net/projects/pbxinaflash/files/IncrediblePBX13-12%20with%20Incredible%20PBX%20GUI/).
+
+http://nerdvittles.com/?p=15587
 
 After you get that going, you can attempt ZoIP.
 
@@ -987,7 +993,7 @@ As you watch the asterisk console dial 300 on one of your phone sets. You should
     -- <PJSIP/701-00000003> Playing '/usr/local/games/zoip-0.2.1/share/sounds/silence/10.gsm' (language 'en')
  ```
  
-**Note:** *I heard nothing for a while then it said tick-tock BEEEEP. Just try saying something and see if the game carries on, like GO North.*
+**Note:** *I heard nothing for a while then it said tick-tock BEEEEP. Just try saying something and see if the game carries on, like "GO North".*
 
 **Note:** *Sphinx is not amazing at detecting my voice, I said "Go North" and it said "Kill North" When I waited a bit and said "run north" then it mistook that as just "North" and proceeded.*
 
