@@ -162,7 +162,7 @@ sub get_input {
       do {
          $self->{AGI}->stream_file("beep");
          my $recording = "/tmp/recording-" . $self->{AGI_PARAMS}->{calleridnum} . "-" . $self->{AGI_PARAMS}->{uniqueid};
-         $self->{AGI}->exec("monitor", "wav|$recording");
+         $self->{AGI}->exec("monitor", "wav,$recording");
          $self->{AGI}->exec("backgrounddetect", $self->{CONFIG}->{path} . "/share/sounds/silence/10");
          $self->{AGI}->exec("stopmonitor");
          $line = &asr( "$recording-in.wav" );
@@ -174,7 +174,7 @@ sub get_input {
          # the 10th second, and not be interrupted by teh computer saying
          # tick-tock
          #
-         # $self->{AGI}->exec("record", "$recording.wav|1|10|q" );
+         # $self->{AGI}->exec("record", "$recording.wav,1,10,q" );
          # $line = &asr( "$recording.wav" );
          $self->{AGI}->verbose("Zasterisk: Sphinx returned: [$line]", 1);
          if ( length($line) > 0 ) {
