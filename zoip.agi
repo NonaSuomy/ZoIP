@@ -10,7 +10,7 @@
 #  Asterisk::AGI, allows us to send commands to asterisk
 #
 
-our $VERSION = '0.2.1';
+our $VERSION = '0.2.2';
 
 use FindBin;
 use lib "$FindBin::Bin/lib";
@@ -31,9 +31,9 @@ $AGI->setcallback(\&cleanup); # Cleanup that should be performed if the caller h
 
 if( !$ARGV[0] ) {
 	$AGI->verbose("No story file specified, exiting.", 1 );
-	$AGI->verbose("Usage: exten => 100,1,AGI(zoip.agi|GAMEFILE.DAT)", 1);
+	$AGI->verbose("Usage: exten => 100,1,AGI(zoip.agi,GAMEFILE.DAT)", 1);
 	print STDERR "No story file specified, exiting.\n";
-	print STDERR "Usage: exten => 100,1,AGI(zoip.agi|GAMEFILE.DAT)\n";
+	print STDERR "Usage: exten => 100,1,AGI(zoip.agi,GAMEFILE.DAT)\n";
 	exit(-1);
 }
 
