@@ -67,11 +67,11 @@ INSTALLING ZoIP ON DEBIAN-BASED SYSTEMS
    i.e.
    
       [default]
-      exten => 300,1,AGI(/usr/local/games/zoip/zoip.agi|ZORK1.DAT)
+      exten => 300,1,AGI(/usr/local/games/zoip/zoip.agi,ZORK1.DAT)
 
 9. Tell asterisk to reload it's extensions.conf
 
-      asterisk -rx 'extensions reload'
+      asterisk -rx 'dialplan reload'
 
 10. Call extension 300, and enjoy!
 
