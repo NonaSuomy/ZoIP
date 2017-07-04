@@ -1,0 +1,23 @@
+<s> SAVE </s>
+<s> NORTH </s>
+<s> SOUTH </s>
+<s> EAST </s>
+<s> WEST </s>
+<s> NORTH WEST </s>
+<s> NORTH EAST </s>
+<s> SOUTH WEST </s>
+<s> SOUTH EAST </s>
+<s> UP </s>
+<s> DOWN </s>
+<s> OPEN MAILBOX </s>
+<s> OPEN WINDOW </s>
+<s> MOVE RUG </s>
+<s> OPEN TRAP DOOR </s>
+<s> TAKE ALL </s>
+<s> TURN ON LANTERN </s>
+<s> TURN OFF LANTERN </s>
+<s> KILL TROLL WITH SWORD </s>
+<s> LOOK </s>
+<s> INVENTORY </s>
+<s> TAKE LEAFLET </s>
+<s> READ LEAFLET </s>

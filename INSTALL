@@ -1,0 +1,104 @@
+
+INSTALLING ZoIP ON DEBIAN-BASED SYSTEMS
+---------------------------------------
+
+1. Extract the ZoIP tarball to a suitable location
+
+   i.e.
+   
+      mkdir -p /usr/local/games
+      cd /usr/local/games
+      tar -xzf <path to archive>/zoip.tar.gz
+      ln -s zoip-<version> zoip
+
+2. Copy the example configuration file zoip/etc/zoip.conf.example to
+   zoip/etc/zoip.conf, and change values as you see fit. The defaults should
+   meet your immediate needs.
+
+3. Install Sphinx2, and Festival
+
+   Install the Sphinx2 binaries and developer kit
+
+      apt-get install sphinx2-bin libsphinx2-dev
+
+   Install the Sphinx2 Perl bindings
+
+      wget http://search.cpan.org/CPAN/authors/id/D/DJ/DJHD/Speech-Recognizer-SPX-0.0801.tar.gz
+      tar -xzf Speech-Recognizer-SPX-0.0801.tar.gz
+      cd Speech-Recognizer-SPX-0.0801
+      perl Makefile.PL --sphinx-prefix=/usr
+      make && make test && make install
+
+   Install Festival, and the 'kallpc8k' voice, sitable for telephone quality
+
+      apt-get install festival festvox-kallpc8k
+
+4. Install the Asterisk::AGI perl module
+
+      wget http://asterisk.gnuinter.net/files/asterisk-perl-0.08.tar.gz
+      tar -xzf asterisk-perl-0.08.tar.gz
+      cd asterisk-perl-0.08
+      perl Makefile.PL
+      make && make test && make install 
+
+5. Add some additional perl modules used by ZoIP from the apt repository
+
+      apt-get install libproc-daemon-perl liblog-log4perl-perl libconfig-tiny-perl
+
+6. Start the Sphinx2 daemon in a separate console. By default, it is set to NOT
+   daemonize, and will print all sorts of messages to the console. If you want
+   it to daemonize, set daemonize=1 in the [sphinx] section of zoip.conf
+
+      /usr/local/games/zoip/sphinx_server.pl
+
+7. Find some z-machine games to play! 
+
+   Various games can be found around the net, simply search for 'interactive
+   fiction', 'infocom', 'zork' and such things. The only part you will need is
+   the .DAT file. Move them into the share/games folder in the zoip directory.
+
+   We will bundle games once we find some that are licensed for free
+   redistribution. 
+
+8. Add ZoIP to your asterisk dialplan (usually in /etc/asterisk/extensions.conf),
+   and specify a gamefile to play. zoip.agi will look for the game file in it's
+   share/games folder, or alternatively, at the full path that you specify.
+
+   i.e.
+   
+      [default]
+      exten => 300,1,AGI(/usr/local/games/zoip/zoip.agi|ZORK1.DAT)
+
+9. Tell asterisk to reload it's extensions.conf
+
+      asterisk -rx 'extensions reload'
+
+10. Call extension 300, and enjoy!
+
+DEBUGGING:
+---------
+
+1. Turn verbosity up to '1' from the asterisk console, and try calling in again. 
+
+*CLI> set verbose 1
+
+2. Try executing the script from the command line, and pressing enter a few
+   times. You should see something like this:
+
+$ ./zoip.agi ZORK1.DAT
+VERBOSE "Zasterisk: -->West of House<--" 1
+VERBOSE "Zasterisk: Playing cached file" 3
+STREAM FILE /tmp/tts-4c13ad036f18f1b89490f1c6695173a0 #
+VERBOSE "Zasterisk: -->You are standing in an open field west of a white house, with a boarded front door.<--" 1
+VERBOSE "Zasterisk: Playing cached file" 3
+STREAM FILE /tmp/tts-cbb9348ec36370d73425191b52bc7839 #
+VERBOSE "Zasterisk: -->There is a small mailbox here.<--" 1
+VERBOSE "Zasterisk: Playing cached file" 3
+STREAM FILE /tmp/tts-e4f43f74dcfe3941013064fe5b1de8df #
+STREAM FILE beep ""
+EXEC monitor wav|/tmp/recording--
+EXEC backgrounddetect /home/simon/zasterisk/share/sounds/silence/10
+EXEC stopmonitor ""
+Couldn't open /tmp/recording---in.wav at /home/simon/zasterisk/lib/Asterisk/Games/Zork/ZIO_Asterisk.pm line 267, <STDIN> line 14.
+
+

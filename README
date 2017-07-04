@@ -1,0 +1,54 @@
+ZoIP - a telephony/text adventure bridge for Asterisk and Infocom games
+
+DESCRIPTION
+
+ ZoIP (formerly Zasterisk) implements a Rezrov ZIO object, allowing a user to
+ communicate with a Z-Machine via telephony devices.
+
+COPYRIGHT
+
+ Copyright (c) 2005-2006 Simon P. Ditner <simon@uc.org>.
+ All rights reserved.  This program is free software; you can
+ redistribute it and/or modify it under the same terms as Perl itself.
+
+ The CMU hmm model 'communicator' has been bundled for ease of installation.
+ (c)1999-2001 Carnegie Mellon University. See README.sphinx for license details.
+
+ Rezrov has been bundled with this package for ease of installation.  Please
+ see README.rezrov for further details concerning it.
+
+PREREQUISITES
+
+General Software:
+- A working installation of Asterisk
+- A working installation of Festival, and Sphinx2
+- Some z-machine compatible game files
+
+Perl modules:
+- Asterisk::AGI (http://asterisk.gnuinter.net/files/asterisk-perl-0.08.tar.gz)
+- Speech::Recognizer::SPX, Config::Tiny, Proc::Daemon
+
+INSTALLATION
+
+ See the INSTALL file.
+
+REVISION HISTORY
+
+ 0.2.1 September 17th, 2006
+   - Had to remove Zork gamefile, as it's not freeware
+
+ 0.2.0 September 5th, 2006
+   - Added Sphinx2 support
+   - Added support for Cepstral.com TTS voices
+   - Added configuration file and removed all hardcoded values
+
+ 0.1.0 Summer, 2005
+   - Implemented basic ZIO object which communicates with asterisk via
+     Asterisk::AGI
+
+MAKING CUSTOM LANGUAGE MODELS
+- Make a list of words
+- Submit them to http://www.speech.cs.cmu.edu/tools/lmtool.html
+- Download the tar file
+- Place the contents in share/model/lm/zork
+- Rename all the files to start with zork

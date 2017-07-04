@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+
+# ZoIP
+#
+# Written by Simon P. Ditner <simon@uc.org> as a platform to experiment with
+# IVR, text-to-speech, and speech-to-text software
+#
+# Major components used:
+#  ZIO_Asterisk, a Games::Rezrov::ZIO compatible module, giving us access to a Z-Machine
+#  Asterisk::AGI, allows us to send commands to asterisk
+#
+
+our $VERSION = '0.2.1';
+
+use FindBin;
+use lib "$FindBin::Bin/lib";
+
+use Asterisk::Games::Zork::StoryFile;      # Ever so slightly customized version of StoryFile, and ZInterpreter
+use Asterisk::Games::Zork::ZInterpreter;  # to make them compatible with Asterisk
+use Games::Rezrov::ZOptions;
+use Games::Rezrov::ZConst;
+use Asterisk::AGI;
+
+use Asterisk::Games::Zork::ZIO_Asterisk; # This is where all the callback routines are defined for use 
+                                         # by the ZInterpreter
+use Config::Tiny;
+
+my $AGI = new Asterisk::AGI;
+my %input = $AGI->ReadParse();   # Parse data structure passed in from Asterisk
+$AGI->setcallback(\&cleanup); # Cleanup that should be performed if the caller hangs up
+
+if( !$ARGV[0] ) {
+	$AGI->verbose("No story file specified, exiting.", 1 );
+	$AGI->verbose("Usage: exten => 100,1,AGI(zoip.agi|GAMEFILE.DAT)", 1);
+	print STDERR "No story file specified, exiting.\n";
+	print STDERR "Usage: exten => 100,1,AGI(zoip.agi|GAMEFILE.DAT)\n";
+	exit(-1);
+}
+
+my $config = Config::Tiny->read( $FindBin::Bin . '/etc/zoip.conf' );
+$config->{zoip}->{path} = $FindBin::Bin;
+
+my $story_file = undef;
+my @searchpath = ( $FindBin::Bin . "/share/games", "" );
+foreach $path( @searchpath ) {
+	if ( -f "$path/$ARGV[0]" ) {
+		$story_file = "$path/$ARGV[0]";
+	}
+}
+if( !defined($story_file) ) {
+   $AGI->verbose("Couldn't find story file $ARGV[0]", 1);
+   print STDERR "Couldn't find story file $ARGV[0]\n";
+   exit(-1);
+}
+
+my $zio = new Asterisk::Games::Zork::ZIO_Asterisk( "columns" => 800, "rows" => 25, "AGI" => $AGI, "AGI_PARAMS" =>{%input}, "CONFIG" => $config->{zoip} );
+my $story = new Games::Rezrov::StoryFile($story_file, $zio);
+Games::Rezrov::StoryFile::setup();
+my $zi = new Games::Rezrov::ZInterpreter($zio);
+
+sub cleanup {
+   $AGI->hangup();
+   exit(0);
+}
