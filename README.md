@@ -767,7 +767,13 @@ exten => 300,1,AGI(/usr/local/games/zoip-0.2.1/zoip.agi,ZORK1.DAT)
 
 ### Part 9 ###
 
-Restart restart asterisk so it will reload extensions_custom.conf which will allow us to dial 300 on the phone to get to the zoip game server.
+Reload the dialplan extensions_custom.conf which will allow us to dial 300 on the phone to get to the ZoIP Game Server.
+
+```
+asterisk -rx 'dialplan reload'
+```
+
+or to restart asterisk.
 
 ```
 amportal restart
