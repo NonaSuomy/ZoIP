@@ -454,13 +454,13 @@ Couldn't open /tmp/recording---in.wav at /home/simon/zasterisk/lib/Asterisk/Game
 
 ### Let's begin! ###
 
-The first issue we will make for ourselves is were going to be using Scientific Linux 6.7 just to make this difficult.
+The first issue we will make for ourselves is we're going to be using Scientific Linux 6.7 just to make this difficult.
 
 ```
 Connected to Asterisk 13.7.2 currently running on IncrediblePBX
 ```
 
-To get a quick VoIP Server going were going to use [IncrediblePBX13.2](https://sourceforge.net/projects/pbxinaflash/files/IncrediblePBX13-12%20with%20Incredible%20PBX%20GUI/).
+To get a quick VoIP Server going we're going to use [IncrediblePBX13.2](https://sourceforge.net/projects/pbxinaflash/files/IncrediblePBX13-12%20with%20Incredible%20PBX%20GUI/).
 
 http://nerdvittles.com/?p=15587
 
@@ -497,7 +497,7 @@ Copy the example configuration file zoip/etc/zoip.conf.example to zoip/etc/zoip.
 cp /usr/local/games/zoip-0.2.1/etc/zoip.conf.example /usr/local/games/zoip-0.2.1/etc/zoip.conf
 ```
 
-Great were still in this game.
+Great we're still in this game.
 
 #### Step 3,4,5 ####
 
@@ -538,9 +538,9 @@ make test
 make install UNINSTALL=1
 ```
 
-Install Festival, and the 'kallpc8k' voice, sitable for telephone quality.
+Install Festival, and the 'kallpc8k' voice, suitable for telephone quality.
 
-**Note:** *YAML is not required I just don't like to see it keep popping up in cpan that it;s not installed.*
+**Note:** *YAML is not required I just don't like to see it keep popping up in cpan that it's not installed.*
 
 ```
 yum install festival bison python-devel pcre-devel perl-CPAN
@@ -950,7 +950,7 @@ A bunch of text should start flowing by from the zoip game server.
 Detach from the tmux session (It will keep running the zoip game server in the background).
 
 ```
-The formatting here is simple enough to understand (I would hope). ^ means ctrl+, so ^x is ctrl+x. M- means meta (generally left-alt or escape)+, so M-x is left-alt+x
+The formatting here is simple enough to understand (I would hope). ^ means ctrl, so ^x is ctrl+x. M- means meta (generally left-alt or escape)+, so M-x is left-alt+x
 
 ^b d OR
 ^b :detach
@@ -970,7 +970,7 @@ Now watch the asterisk CLI for issues or success.
 asterisk -rvvvvvvvvv
 ```
 
-As you watch the asterisk console dial 300 on one of your phone sets. You should be greeted by ZORK "You are standing in an open field west of a white house, with a boarded front door..." Good luck, don't get eaten by a grue.
+As you watch the asterisk console dial 300 on one of your phone sets. You should be greeted by ZORK "You are standing in an open field west of a white house, with a boarded front door..." Good luck, don't get eaten by a Grue.
 
 ```
  -- Launched AGI Script /usr/local/games/zoip-0.2.1/zoip.agi
